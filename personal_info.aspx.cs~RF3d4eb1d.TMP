@@ -1,0 +1,91 @@
+﻿using System;
+using System.Collections;
+using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Xml.Linq;
+using System.Data.SqlClient;
+
+public partial class personal_info : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (Session["usertype"].ToString() != "user")
+        {
+            Response.Redirect("~/login.aspx");
+        }
+        SqlConnection c = new SqlConnection();
+        c.ConnectionString = @"Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|Database.mdf;Integrated Security=True;User Instance=True";
+        c.Open();
+        SqlCommand sc = new SqlCommand();
+        sc.Connection = c;
+        sc.CommandText = "select * from registration where email='"+Session["username"]+"'";
+        SqlDataReader dr = sc.ExecuteReader();
+
+        if (dr.HasRows == true)
+        {
+            dr.Read();
+            txtprname.Text = dr["name"].ToString();
+            rdogender.Text = dr["gender"].ToString();
+            //txtprbirth.Text = dr["birthdate"].ToString();
+            txtcoemail.Text = dr["email"].ToString();
+            txtcomob.Text = dr["mob_no"].ToString();
+        }
+        sc.CommandText = "select * from user_details where email='" + Session["username"] + "'";
+        //if (dr.HasRows == true)
+        //{
+        //    dr.Read();
+        //    txtccity.Text = dr["currentcity"].ToString();
+        //    txthcity.Text = dr["hometown"].ToString();
+        //    ddlrelation.Text = dr["relationship"].ToString();
+        //    txtschool.Text = dr["school"].ToString();
+        //    txtcollege.Text = dr["college"].ToString();
+        //    txtuni.Text = dr["university"].ToString();
+        //    txtcompany.Text = dr["work"].ToString();
+        //}
+        c.Close();
+    }
+    protected void Button3_Click(object sender, EventArgs e)
+    {
+        SqlConnection cn = new SqlConnection();
+        cn.ConnectionString = @"Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|Database.mdf;Integrated Security=True;User Instance=True";
+        cn.Open();
+        SqlCommand cmd = new SqlCommand();
+        cmd.Connection = cn;
+        cmd.CommandText = "insert into user_details(name,gender,dob,relationship,email_id,Mob_no,currentcity,hometown,school,college,university,work)values(@name,@gender,@dob,@relationship,@email_id,@Mob_no,@currentcity,@hometown,@school,@college,@university,@work)";
+        cmd.Parameters.AddWithValue("@name", txtprname.Text);
+        cmd.Parameters.AddWithValue("@gender",rdogender.Text);
+        cmd.Parameters.AddWithValue("@dob",txtprbirth.Text);
+        cmd.Parameters.AddWithValue("@relationship",ddlrelation.Text);
+        cmd.Parameters.AddWithValue("@email_id", txtcoemail.Text);
+        cmd.Parameters.AddWithValue("@mob_no", txtcomob.Text);
+        cmd.Parameters.AddWithValue("@currentcity", txtccity.Text);
+        cmd.Parameters.AddWithValue("@hometown", txthcity.Text);
+        cmd.Parameters.AddWithValue("@school", txtschool.Text);
+        cmd.Parameters.AddWithValue("@college", txtcollege.Text);
+        cmd.Parameters.AddWithValue("@university", txtuni.Text);
+        cmd.Parameters.AddWithValue("@work", txtcompany.Text);
+
+        int r = 0;
+        r = cmd.ExecuteNonQuery();
+        if (r == 0)
+        {
+            Response.Write("error");
+        }
+        else
+        {
+            Response.Redirect("personal.aspx");  
+        }
+        cn.Close();
+    }
+    protected void txtprbirth_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+}

@@ -1,0 +1,124 @@
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="accept_req.aspx.cs" Inherits="accept_req" Title="Untitled Page" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <style type="text/css">
+        .style10
+        {
+            width: 115px;
+        }
+        .style11
+        {
+            width: 86px;
+        }
+    </style>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <table class="style1">
+        <tr>
+            <td class="style10">
+                <asp:Label ID="Label1" runat="server" Text="Accept Request"></asp:Label>
+            </td>
+            <td class="style11">
+                &nbsp;</td>
+            <td>
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td class="style10">
+                &nbsp;</td>
+            <td class="style11">
+                &nbsp;</td>
+            <td>
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td class="style10">
+                &nbsp;</td>
+            <td class="style11">
+                <asp:DropDownList ID="DropDownList1" runat="server" 
+                    DataSourceID="SqlDataSource1" DataTextField="sentreq" 
+                    DataValueField="req_id">
+                </asp:DropDownList>
+            </td>
+            <td>
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td class="style10">
+                &nbsp;</td>
+            <td class="style11">
+                &nbsp;</td>
+            <td>
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td class="style10">
+                &nbsp;</td>
+            <td class="style11">
+                <asp:Button ID="Button1" runat="server" Text="Accept" onclick="Button1_Click" />
+            </td>
+            <td>
+                <asp:Button ID="Button2" runat="server" Text="Delete" onclick="Button2_Click" />
+            </td>
+        </tr>
+        <tr>
+            <td class="style10">
+                &nbsp;</td>
+            <td class="style11">
+                &nbsp;</td>
+            <td>
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td class="style10">
+                &nbsp;</td>
+            <td class="style11">
+                &nbsp;</td>
+            <td>
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td class="style10">
+                &nbsp;</td>
+            <td class="style11">
+                &nbsp;</td>
+            <td>
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+                    ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
+                    
+                    
+                    SelectCommand="SELECT req_id, [sentreq] FROM [request] WHERE ([recivereq] = @recivereq) and status ='Not accepted'" 
+                    onselecting="SqlDataSource1_Selecting">
+                    <SelectParameters>
+                        <asp:SessionParameter Name="recivereq" SessionField="name" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
+            </td>
+        </tr>
+        <tr>
+            <td class="style10">
+                &nbsp;</td>
+            <td class="style11">
+                &nbsp;</td>
+            <td>
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td class="style10">
+                &nbsp;</td>
+            <td class="style11">
+                &nbsp;</td>
+            <td>
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td class="style10">
+                &nbsp;</td>
+            <td class="style11">
+                &nbsp;</td>
+            <td>
+                &nbsp;</td>
+        </tr>
+    </table>
+</asp:Content>
+

@@ -1,0 +1,293 @@
+﻿<%@ master language="C#" autoeventwireup="true" inherits="MasterPage, App_Web_qinz3ixq" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Social Network</title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .style1
+        {
+            width: 77%;
+            
+            margin-right: 0px;
+            
+        }
+        .style5
+        {
+            height: 503px;
+        }
+        .style6
+        {
+            width: 520px;
+            height: 503px;
+        }
+        .style8
+        {
+        }
+        .style16
+        {
+            height: 15px;
+            width: 228px;
+        }
+        .style17
+        {
+            height: 33px;
+            
+        }
+        .style21
+        {
+            width: 228px;
+        }
+        .style25
+        {
+            height: 16px;
+            width: 228px;
+        }
+        .style27
+        {
+            height: 6px;
+            width: 228px;
+        }
+        .style28
+        {
+            height: 7px;
+            width: 228px;
+        }
+        .style29
+        {
+            height: 14px;
+            width: 228px;
+        }
+        .style30
+        {
+            height: 3px;
+            width: 228px;
+        }
+        .style31
+        {
+            width: 202px;
+            height: 503px;
+        }
+        .style32
+        {
+            width: 228px;
+            height: 26px;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:Image ID="Image1" runat="server" ImageUrl="~/images/photosbg.jpg" 
+            Width="1311px" Height="182px" style="margin-right: 0px" />
+    </div>
+    <table class="style1" bgcolor="White">
+        <tr>
+            <td class="style17" colspan="3">
+                <asp:Menu ID="Menu1" runat="server" BackColor="#3399FF" Font-Bold="True" 
+                    Font-Size="Large" Height="31px" Orientation="Horizontal" Width="1304px" 
+                    onmenuitemclick="Menu1_MenuItemClick">
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/user_homepage.aspx" Text="Home" Value="Home">
+                        </asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/Friend_table.aspx" Text="Friends" Value="Friends">
+                        </asp:MenuItem>
+                        <asp:MenuItem></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/message_list.aspx" Text="Message" Value="Message">
+                        </asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/login.aspx" Text="Log Out" Value="Log Out">
+                        </asp:MenuItem>
+                    </Items>
+                </asp:Menu>
+            </td>
+        </tr>
+        <tr>
+            <td class="style31">
+                <table class="style1" bgcolor="#FFFF66">
+                    <tr>
+                        <td class="style21">
+                            <asp:Label ID="lblmstername" runat="server" Font-Bold="True" 
+                                Font-Size="Large" ForeColor="#FF0066"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="style21">
+                            <asp:Image ID="Image2" runat="server" Height="188px" Width="222px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="style29">
+                            <asp:HyperLink ID="HyperLink6" runat="server" 
+                                NavigateUrl="~/upload_profile_photo.aspx" Font-Bold="True">Upload Profile 
+                            Photo</asp:HyperLink>
+                            <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="style28">
+                            <asp:HyperLink ID="HyperLink8" runat="server" 
+                                NavigateUrl="~/personal_info.aspx" Font-Bold="True">Edit Information</asp:HyperLink>
+                            <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="style27">
+                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/personal.aspx" 
+                                Font-Bold="True">About Me</asp:HyperLink>
+                            <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="style30">
+                            <asp:HyperLink ID="HyperLink7" runat="server" NavigateUrl="~/send_request.aspx" 
+                                Font-Bold="True">Request</asp:HyperLink>
+                            <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="style21">
+                <asp:HyperLink ID="HyperLink2" runat="server" 
+                    NavigateUrl="~/change_password.aspx" Font-Bold="True">Change Password</asp:HyperLink>
+                            <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="style25">
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="style16">
+                <asp:HyperLink ID="HyperLink3" runat="server" 
+                    NavigateUrl="~/community_list.aspx" Font-Bold="True" Visible="False">Community</asp:HyperLink>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="style21">
+                            &nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td class="style21">
+                <asp:GridView ID="GridView1" runat="server" AllowPaging="True" 
+                    AutoGenerateColumns="False" DataSourceID="SqlDataSource1" 
+                    onselectedindexchanged="GridView1_SelectedIndexChanged" CellPadding="4" 
+                    ForeColor="#333333" GridLines="None" DataKeyNames="email">
+                    <RowStyle BackColor="#EFF3FB" />
+                    <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                    <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                    <Columns>
+                        <asp:CommandField SelectText="chat" ShowSelectButton="True" />
+                        <asp:BoundField DataField="Online" HeaderText="Online" 
+                            SortExpression="Online" />
+                        <asp:BoundField DataField="email" HeaderText="email" ReadOnly="True" 
+                            SortExpression="email" Visible="False" />
+                    </Columns>
+                    <EditRowStyle BackColor="#2461BF" />
+                    <AlternatingRowStyle BackColor="White" />
+                </asp:GridView>
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+                    ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
+                    
+                    
+                                
+                                SelectCommand="SELECT name AS Online, email FROM registration WHERE (isOnline = N'0') AND (user_id &lt;&gt; @userid)">
+                    <SelectParameters>
+                        <asp:SessionParameter Name="userid" SessionField="userid" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="style32">
+                            <asp:ScriptManager ID="ScriptManager1" runat="server">
+                            </asp:ScriptManager>
+                            <br />
+                            Chat Requests</td>
+                    </tr>
+                    <tr>
+                        <td class="style21">
+                            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                <ContentTemplate>
+                                    <asp:SqlDataSource ID="SqlDataSourceChatReq" runat="server" 
+                                        ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
+                                        SelectCommand="SELECT registration.name as Name, chatRequest.reqFrom FROM chatRequest INNER JOIN registration ON chatRequest.reqFrom = registration.email WHERE (chatRequest.reqTo = @username)">
+                                        <SelectParameters>
+                                            <asp:SessionParameter Name="username" SessionField="username" />
+                                        </SelectParameters>
+                                    </asp:SqlDataSource>
+
+                                    <asp:GridView ID="GridView2" runat="server" AllowPaging="True" 
+                                        AutoGenerateColumns="False" CellPadding="4" DataSourceID="SqlDataSourceChatReq" 
+                                        ForeColor="#333333" GridLines="None" Height="68px" 
+                                        onselectedindexchanged="GridView2_SelectedIndexChanged" Width="162px" DataKeyNames="reqFrom">
+                                        <RowStyle BackColor="#EFF3FB" />
+                                        <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                                        <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                                        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                                        <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                                        <Columns>
+                                            <asp:CommandField SelectText="chat" ShowSelectButton="True" />
+                                            <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
+                                            <asp:BoundField DataField="reqFrom" HeaderText="reqFrom" 
+                                                SortExpression="reqFrom" Visible="False" />
+                                        </Columns>
+                                        <EditRowStyle BackColor="#2461BF" />
+                                        <AlternatingRowStyle BackColor="White" />
+                                    </asp:GridView>
+                                    <asp:Timer ID="Timer1" runat="server" Interval="1000" ontick="Timer1_Tick">
+                                    </asp:Timer>
+
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="style21">
+                            &nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td class="style21">
+                            &nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td class="style21">
+                            &nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td class="style21">
+                            &nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td class="style21">
+                            &nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td class="style21">
+                            &nbsp;</td>
+                    </tr>
+                </table>
+            </td>
+            <td class="style6" bgcolor="#FFFFCC">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+            </td>
+            <td class="style5" bgcolor="#FFFFCC">
+            </td>
+        </tr>
+        <tr>
+            <td class="style8" colspan="3">
+                &nbsp;</td>
+        </tr>
+        </table>
+    </form>
+</body>
+</html>

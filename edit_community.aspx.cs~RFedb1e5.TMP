@@ -1,0 +1,64 @@
+﻿using System;
+using System.Collections;
+using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Xml.Linq;
+using System.Data.SqlClient;
+
+public partial class edit_community : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        SqlConnection cn = new SqlConnection();
+        cn.ConnectionString = @"Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|Database.mdf;Integrated Security=True;User Instance=True";
+        cn.Open();
+        SqlCommand cmd = new SqlCommand();
+        cmd.Connection = cn;
+        cmd.CommandText = "select * from about_community ";
+            SqlDataReader dr=cmd.ExecuteReader();
+        if(dr.HasRows==true)
+        {
+            dr.Read();
+            TextBox2.Text=dr["cm_name"].ToString();
+            TextBox1.Text=dr["cm_about"].ToString();
+            FileUpload1.
+        }
+    }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        string path = Server.MapPath(@"~\Uploaded_Photo\" + FileUpload1.FileName);
+        if (FileUpload1.HasFile == true)
+        {
+            if (FileUpload1.PostedFile.ContentType == "jpeg/Image")
+                FileUpload1.SaveAs(path);
+        }
+        SqlConnection cn = new SqlConnection();
+        cn.ConnectionString = @"Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|Database.mdf;Integrated Security=True;User Instance=True";
+        cn.Open();
+        SqlCommand cmd = new SqlCommand();
+        cmd.Connection = cn;
+        cmd.CommandText = "update about_community set cm_name=@cm_name,cm_about=@cm_about,cm_photo=@cm_photo";
+        cmd.Parameters.AddWithValue("@cm_name", TextBox2.Text);
+        cmd.Parameters.AddWithValue("@cm_about", TextBox1.Text);
+        cmd.Parameters.AddWithValue("@cm_photo", path);
+        int r = 0;
+        r = cmd.ExecuteNonQuery();
+        
+        if (r == 0)
+        {
+
+        }
+        else
+        {
+            Response.Redirect("community.aspx");
+        }
+        cn.Close();
+    }
+}
