@@ -1,4 +1,4 @@
-﻿<%@ page language="C#" masterpagefile="~/MasterPageNew.master" autoeventwireup="true" inherits="upload_profile_photo, App_Web_mabazu3g" title="Upload profile photo " %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="upload_profile_photo.aspx.cs" Inherits="upload_profile_photo" Title="Untitled Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <style type="text/css">
@@ -78,8 +78,7 @@
             <td class="style32">
                 </td>
             <td class="style33">
-                <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="Upload" 
-                    style="width: 74px" />
+                <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="Upload" />
             </td>
             <td class="style33">
                 </td>
@@ -96,9 +95,7 @@
             <td class="style10">
                 &nbsp;</td>
             <td>
-                <asp:Button ID="Button2" runat="server" onclick="Button2_Click" 
-                    Text="Delete profile picture" />
-            </td>
+                &nbsp;</td>
             <td>
                 &nbsp;</td>
         </tr>
